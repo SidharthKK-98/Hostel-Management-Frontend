@@ -1,6 +1,22 @@
 import type { User } from "./authTypes";
 
 
+export interface AddTotalRoomResponse {
+    message:string,
+    saveConfig:TotalRoomConfig
+}
+
+export interface TotalRoomConfig {
+    _id:string,
+    totalRooms:number,
+    roomCapacity:number,
+    rooms:string[],
+    createdAt: string; 
+  updatedAt: string;
+  __v: number;
+}
+
+
 export interface Rooms {
     _id:string,
     roomNumber:number,
@@ -26,10 +42,15 @@ export interface HostelConfigResponse {
     config:HostelConfig
 }
 
+export interface RemoveRoomResponse {
+    message:string
+}
+
 export interface RoomUnassignedUsers{
     message:string,
     data:User
 }
+
 
 export interface AddGuestSuccessResponse  {
   message: string;
@@ -47,4 +68,18 @@ export interface AddUsersParams {
 export interface RemoveUsersParams {
     roomId:string,
     userId:string
+}
+
+export interface AddTotalRoomsParams {
+    totalRooms:number,
+    roomCapacity:number
+}
+
+export interface addRoomsResponse {
+    message:string,
+    rooms:Rooms[]
+}
+
+export interface addRoomsParams {
+    numberOfRooms:number
 }

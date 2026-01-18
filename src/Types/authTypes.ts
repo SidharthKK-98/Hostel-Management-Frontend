@@ -36,3 +36,7 @@ export interface User {
     __v?:number
 
 }
+
+export interface LogoutResponse {
+    message:string
+}

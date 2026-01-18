@@ -1,4 +1,4 @@
-import { useHostelConfig } from "@/hooks/useHostelConfig"
+import { useHostelConfig } from "@/hooks/HostelConfigureHooks/useHostelConfig"
 import { Button } from "../ui/button";
 import {
   Card,
@@ -9,9 +9,11 @@ import {
 } from "@/components/ui/card"
 import { X } from 'lucide-react';
 import { useState } from "react";
-import { useUnassignedUsers } from "@/hooks/useUnassignedUsers";
-import { useAddUserToRoom } from "@/hooks/useAddUserToRoom";
-import { useDeleteUserFromRoom } from "@/hooks/useDeleteUserFromRoom";
+import { useUnassignedUsers } from "@/hooks/authHooks/useUnassignedUsers";
+import { useAddUserToRoom } from "@/hooks/HostelConfigureHooks/useAddUserToRoom";
+import { useDeleteUserFromRoom } from "@/hooks/HostelConfigureHooks/useDeleteUserFromRoom";
+import HostelConfigCard from "../Cards/HostelConfigCard";
+import { useRemoveRooms } from "@/hooks/HostelConfigureHooks/useRemoveRooms";
 
 
 function Room() {
@@ -20,6 +22,7 @@ function Room() {
     const {data:UnassignedUser,isError:isUnassignedError,error:unassignedError}=useUnassignedUsers()
     const {mutate:addUserToRoom,isLoading:isAddingUser,isError:addUserError} = useAddUserToRoom()
     const{mutate:removeUserFromRoom,isLoading:isRemovingUser,isError:removeUserError} = useDeleteUserFromRoom()
+    const{mutate:removeRooms} = useRemoveRooms()
 
     const[selectedRoomId,setSelectedRoomId]=useState<string | null>(null)
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -28,7 +31,10 @@ function Room() {
 
     if(isLoading) return <div>Loading...</div>
     if(isError) return <div>Error:{error.message}</div>
-    
+    if(data){
+        console.log(data.rooms);
+        
+    }
 
     const addUser =(roomId:string,userId:string)=>{
         if(!selectedRoom) return
@@ -47,23 +53,31 @@ function Room() {
             userId
         })
     }
+
+    const removeRoom=(roomId:string)=>{
+        removeRooms(
+            roomId
+        )
+    }
+
+
   return (
     <div className='p-4 '>
 
-        <div>
-
+        <div className="m-4">
+            <HostelConfigCard/>
         </div>
 
 
         <div>
-            <h1 className="text-black text-2xl m-4">Rooms</h1>
-            <div className="grid grid-cols-5 gap-2 ">
+            <h1 className="text-black text-2xl m-4 font-semibold">Rooms</h1>
+            <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6 gap-2 ">
                 {
                     data?.rooms.map((room)=>{
                         const isVacant = room.occupants.length === 0
                         const statusColor = isVacant ? "bg-gray-300 hover:bg-gray-300" : room.occupants[0]?.gender === "male" ? "bg-blue-500 text-white hover:bg-blue-500" : "bg-pink-500 text-white hover-bg-pink-500" 
                         return(
-                            <Button key={room._id} className={`${statusColor} hover:opacity-80 p-8 shadow-md`} onClick={()=>{setSelectedRoomId(room._id) ;setIsAddModalOpen(false)}}>
+                            <Button key={room._id} className={`${statusColor} hover:opacity-80 p-8 shadow-md lg:w-30`} onClick={()=>{setSelectedRoomId(room._id) ;setIsAddModalOpen(false)}}>
                                 {room.roomNumber}
                             </Button>
 
@@ -117,7 +131,7 @@ function Room() {
                         {
                             isAddModalOpen ?(
                                UnassignedUser.length ?( 
-                               <div className="border w- h-auto shadow-2xl p-4 rounded">
+                               <div className="border w- h-auto shadow-2xl p-2 rounded">
                                     <div className="flex justify-end">
                                         <Button className="font-semibold text-black  " variant={"ghost"} onClick={()=>setIsAddModalOpen(false)}><X/></Button> 
 
@@ -150,9 +164,17 @@ function Room() {
                             )
                             :
                             (
-                                <Button disabled={selectedRoom.occupants.length==selectedRoom.capacity}
-                            onClick={()=>setIsAddModalOpen(true)}
-                            >Add User</Button>
+                                <div className="w-full  lg:flex justify-between">
+                                          <Button disabled={selectedRoom.occupants.length==selectedRoom.capacity}
+                                            onClick={()=>setIsAddModalOpen(true)}
+                                            >Add User</Button>
+
+                                           <Button disabled={selectedRoom.occupants.length>0}
+                                           onClick={()=>removeRoom(selectedRoom._id)}
+                                           className="bg-red-400 p-4 my-2 w-3/4 lg:w-1/4 lg:my-0 shadow-2xl">- Remove Room</Button>
+
+                                </div>
+                              
                             )
                            
                         }

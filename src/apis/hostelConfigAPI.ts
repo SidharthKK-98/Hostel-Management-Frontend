@@ -1,9 +1,21 @@
-import  {type RemoveUsersParams, type AddGuestSuccessResponse, type AddUsersParams, type HostelConfigResponse, type RemoveGuestResponse } from "@/Types/hostelConfigTypes"
+import  {type AddTotalRoomsParams,type RemoveUsersParams, type AddGuestSuccessResponse, type AddUsersParams, type HostelConfigResponse, type RemoveGuestResponse,type AddTotalRoomResponse,type addRoomsResponse, type addRoomsParams,type RemoveRoomResponse } from "@/Types/hostelConfigTypes"
 import commonAPI from "./commonAPI"
 
 
+export const addTotalRooms=(payload:AddTotalRoomsParams)=>{
+    return commonAPI<AddTotalRoomResponse>("POST","hostelConfig/totalRoom/create",payload)
+}
+
 export const getTotalRooms=()=>{
     return commonAPI<HostelConfigResponse>("GET","/hostelConfig/totalroom/get")
+}
+
+export const addRooms=(payload:addRoomsParams)=>{
+    return commonAPI<addRoomsResponse>("POST","hostelConfig/totalRoom/addRooms",payload)
+}
+
+export const removeRooms=(roomId:string)=>{
+    return commonAPI<RemoveRoomResponse>("DELETE",`hostelConfig/totalRoom/deleteRoom/${roomId}`)
 }
 
 export const addUsers=({roomId,userId}:AddUsersParams)=>{

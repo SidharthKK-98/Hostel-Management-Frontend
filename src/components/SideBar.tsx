@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { useLogout } from "@/hooks/authHooks/useLogout"
 import { House } from "lucide-react"
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
@@ -13,6 +14,7 @@ type sideBarButton={
 function SideBar() {
 
     const [activeButton,setActiveButon] = useState(1)
+    const {mutate:Logout,isPending} = useLogout()
 
     const ButtonArray:sideBarButton[] = [
         {
@@ -42,6 +44,10 @@ function SideBar() {
 
     ]
 
+    // const logout=()=>{
+
+    // }
+
   return (
     <div className="p-4 min-h-screen bg-white shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)] z-10 relative ">
         <h1 className="text-black font-semibold  my-4 flex gap-2 items-center"><House/> Hostel Admin</h1>
@@ -56,7 +62,10 @@ function SideBar() {
             ))
         }
 
-        <Button variant={"link"} className="text-black w-full mx-auto">Logout</Button>
+        <Button variant={"link"} 
+        onClick={()=>Logout()}
+        disabled={isPending}
+        className="text-black w-full mx-auto">Logout</Button>
 
     </div>
   )

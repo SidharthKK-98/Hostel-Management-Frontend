@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 function AdminDashBoardLayout () {
   return (
-    <div className='grid grid-cols-12 h-lvh '>
+    <div className='grid grid-cols-12 min-h-screen '>
         <div className='col-span-3 bg-white  '>
             <SideBar/>
         </div>

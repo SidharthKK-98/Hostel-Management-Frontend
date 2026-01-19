@@ -49,8 +49,8 @@ function SideBar() {
     // }
 
   return (
-    <div className="p-4 min-h-screen bg-white shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)] z-10 relative ">
-        <h1 className="text-black font-semibold  my-4 flex gap-2 items-center"><House/> Hostel Admin</h1>
+    <div className="p-4 h-full  bg-gray-800 shadow-2xl z-10  ">
+        <h1 className="text-white font-semibold  my-4 flex gap-2 items-center"><House/> Hostel Admin</h1>
         {
             ButtonArray.map((item)=>(
                 <NavLink  key={item.id} to={item.route}>
@@ -65,7 +65,7 @@ function SideBar() {
         <Button variant={"link"} 
         onClick={()=>Logout()}
         disabled={isPending}
-        className="text-black w-full mx-auto">Logout</Button>
+        className="text-white w-full mx-auto">Logout</Button>
 
     </div>
   )

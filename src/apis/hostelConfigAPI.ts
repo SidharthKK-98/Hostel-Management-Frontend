@@ -1,4 +1,6 @@
-import  {type AddTotalRoomsParams,type RemoveUsersParams, type AddGuestSuccessResponse, type AddUsersParams, type HostelConfigResponse, type RemoveGuestResponse,type AddTotalRoomResponse,type addRoomsResponse, type addRoomsParams,type RemoveRoomResponse } from "@/Types/hostelConfigTypes"
+import  {type AddTotalRoomsParams,type RemoveUsersParams, type AddGuestSuccessResponse, 
+    type AddUsersParams, type HostelConfigResponse, type RemoveGuestResponse,type AddTotalRoomResponse,
+    type addRoomsResponse, type addRoomsParams,type RemoveRoomResponse } from "@/Types/hostelConfigTypes"
 import commonAPI from "./commonAPI"
 
 

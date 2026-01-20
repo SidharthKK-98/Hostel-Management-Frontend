@@ -12,13 +12,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAddFoodItems } from "@/hooks/MenuItemsHooks/useAddFoodItems";
 import { useState } from "react";
-import { type AddFoodItemsParams } from "@/Types/MenuItemsTypes";
 import { toast } from "sonner";
+import type { AddFoodItemCardProps } from "@/Types/MenuItemsTypes";
+import { useUpdateFoodItems } from "@/hooks/MenuItemsHooks/useUpdateFoodItems";
 
 
-function AddFoodItemCard({setActive}) {
+function AddFoodItemCard({setActive,setIsUpdating,isUpdating,updatingFoodId,setUpdatingFoodId}:AddFoodItemCardProps) {
 
   const {mutate:addMenu,isPending,isError}=useAddFoodItems()
+  const{mutate:updateMenu} = useUpdateFoodItems()
 
 const [name, setName] = useState("")
 const [price, setPrice] = useState<number | "">("")
@@ -42,6 +44,25 @@ const handleSubmit=()=>{
   )
 }
 
+const handleUpdate=(foodId:string)=>{
+    updateMenu(
+      {
+      id: foodId,
+      name,
+      price:price === "" ? undefined : Number(price),
+      foodImg
+      },
+       
+      {
+        onSuccess:()=>{
+          setActive(false)
+          setIsUpdating(false)
+          setUpdatingFoodId(false)
+        }
+      }
+    )
+}
+
   return (
     <div>
       <Card className="w-full max-w-[350px] shadow-2xl border-gray-100 rounded-[2rem]">
@@ -51,10 +72,14 @@ const handleSubmit=()=>{
               <div className="bg-orange-100 p-2 rounded-xl">
               <Utensils className="h-5 w-5 text-orange-600" />
             </div>
-            <CardTitle className="text-2xl font-bold tracking-tight">Add Item</CardTitle>
+            <CardTitle className="text-2xl font-bold tracking-tight">
+              {
+                isUpdating?(<div>Update Item</div>):(<div>Add Item</div> )
+              }
+              </CardTitle>
           </div>
 
-          <Button onClick={()=>setActive(false)}><X/></Button>
+          <Button onClick={()=>{setActive(false);setIsUpdating(false)}}><X/></Button>
 
           </div>
          
@@ -145,11 +170,22 @@ const handleSubmit=()=>{
 
         <CardFooter>
           <Button
-          onClick={handleSubmit} 
+          onClick={()=>{
+            if(isUpdating){
+              handleUpdate(updatingFoodId)
+            }
+            else{
+              handleSubmit()
+            }
+          }} 
           className="w-full h-12 rounded-2xl bg-[#3c851f]
            hover:bg-green-700 text-white font-bold text-md shadow-lg 
            shadow transition-all active:scale-[0.98]">
-            <Plus className="mr-2 h-5 w-5" /> Save Food Item
+             {
+                isUpdating?(<div>Update Food Item</div>):
+                (<div className="flex items-center"> <Plus className="mr-2 h-5 w-5" /> Save Food Item</div> )
+              }
+           
           </Button>
         </CardFooter>
       </Card>

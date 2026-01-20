@@ -1,23 +1,32 @@
-import type { FoodItem } from "@/Types/MenuItemsTypes"
+import type {  FoodItemCardProps } from "@/Types/MenuItemsTypes"
 import { Button } from "@/components/ui/button"
+import { useRemoveFoodItems } from "@/hooks/MenuItemsHooks/useRemoveFoodItems";
 import { Pencil, Trash2 } from 'lucide-react';
 
-function FoodItemCard({foodItem}:FoodItem) {
+function FoodItemCard({foodItem,setIsUpdating,setUpdatingFoodId}:FoodItemCardProps) {
 
-    const{image,name,price} = foodItem
+    const{image,name,price,_id} = foodItem
+
+    const {mutate:removeFoodItem} = useRemoveFoodItems()
+
+    const removeItem=(itemId:string)=>{
+        removeFoodItem(
+          itemId
+        )
+    }
 
   return (
 
     <div >
-      <div className="max-w-[200px] bg-[#343a47] rounded-[1.5rem] overflow-hidden shadow-2xl border border-gray-800 transition-transform duration-300 hover:scale-[1.02]">
+      <div className="max-w-[200px]  rounded-[1.5rem] overflow-hidden shadow-2xl  transition-transform duration-300 hover:scale-[1.02]">
         
         {/* Image Section  */}
-        <div className="relative p-2 pb-0">
-          <div className="relative h-32 w-full overflow-hidden rounded-[1.2rem]">
+        <div className="relative p-2 pb-0 ">
+          <div className="relative h-32 w-full overflow-hidden rounded-[1.2rem] border border-gray-800">
             <img 
               src={image} 
               alt="image" 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover "
             />
             {/* Price Badge */}
             <div className="absolute top-2 right-2 bg-white/80 backdrop-blur-md px-2 py-0.5 rounded-full shadow-lg">
@@ -30,7 +39,7 @@ function FoodItemCard({foodItem}:FoodItem) {
 
         {/* Content Section */}
         <div className="p-4 pt-3 text-center">
-          <h2 className="text-lg font-bold text-white mb-1 tracking-tight truncate">
+          <h2 className="text-lg font-bold text-black mb-1 tracking-tight truncate">
             {name}
           </h2>
          
@@ -38,13 +47,17 @@ function FoodItemCard({foodItem}:FoodItem) {
           {/* Action Buttons  */}
           <div className="flex flex-col gap-2 justify-center">
             {/* Update Button */}
-            <Button className="w-full flex items-center justify-center gap-1.5 bg-[#82CA65] hover:bg-[#71b854] text-[#064E3B] font-bold py-2 px-3 rounded-full text-[11px] transition-all active:scale-95">
+            <Button 
+            onClick={()=>{setIsUpdating(true);setUpdatingFoodId(_id)}}
+            className="w-full flex items-center justify-center gap-1.5 bg-[#82CA65] hover:bg-[#71b854] text-[#064E3B] font-bold py-2 px-3 rounded-full text-[11px] transition-all active:scale-95">
               <Pencil size={12} strokeWidth={3} />
               Update
             </Button>
 
           {/* Remove Button */}
-            <Button className="w-full flex items-center justify-center gap-1.5 bg-[#D99991] hover:bg-[#ca877e] text-[#4C1D1D] font-bold py-2 px-3 rounded-full text-[11px] transition-all active:scale-95">
+            <Button 
+            onClick={()=>removeItem(_id)}
+            className="w-full flex items-center justify-center gap-1.5 bg-[#D99991] hover:bg-[#ca877e] text-[#4C1D1D] font-bold py-2 px-3 rounded-full text-[11px] transition-all active:scale-95">
               <Trash2 size={12} strokeWidth={3} />
               Remove
             </Button>

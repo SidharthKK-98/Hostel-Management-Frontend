@@ -1,4 +1,4 @@
-import {type SaveFoodItemResponse, type AddFoodItemsParams,type FoodMenuResponse } from "@/Types/MenuItemsTypes";
+import {type SaveFoodItemResponse, type AddFoodItemsParams,type FoodMenuResponse, type UpdateFoodItemsParams } from "@/Types/MenuItemsTypes";
 import commonAPI from "./commonAPI";
 
 export const addMenu=(payload:AddFoodItemsParams)=>{
@@ -12,4 +12,27 @@ export const addMenu=(payload:AddFoodItemsParams)=>{
 
 export const getFoodMenu=()=>{
     return commonAPI<FoodMenuResponse>("GET","foodMenu/getFoodItems")
+}
+
+export const removeFoodItem=(ItemId:string)=>{
+    return commonAPI<SaveFoodItemResponse>("DELETE",`foodMenu/deleteFoodItem/${ItemId}`)
+}
+
+export const updateFoodItem=(payload:UpdateFoodItemsParams)=>{
+
+    const formData = new FormData()
+
+            if (payload.name) {
+                formData.append("name", payload.name)
+            }
+
+            if (payload.price !== undefined) {
+                formData.append("price", payload.price.toString())
+            }
+
+            if (payload.foodImg) {
+                formData.append("foodImg", payload.foodImg)
+            }
+
+    return commonAPI<SaveFoodItemResponse>("PATCH",`foodMenu/updateFoodItem/${payload.id}`,formData)
 }

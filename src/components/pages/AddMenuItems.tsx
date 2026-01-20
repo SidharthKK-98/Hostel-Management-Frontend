@@ -8,16 +8,15 @@ function AddMenuItems() {
 
   const {data,isLoading,isError,error} = useGetFoodItems()
   const [active,setActive] = useState<boolean>(false)
-  if(data){
-    console.log(data.foodMenu);
-    
-  }
+  const [isUpdating,setIsUpdating] = useState<boolean>(false)
+  const [updatingFoodId,setUpdatingFoodId] = useState<string | null>(null)
   return (
     <div className='text-black  h-full p-2'>
       <div>
         {
-          active ?(
-               <AddFoodItemCard setActive={setActive}/> 
+          active || isUpdating ?(
+               <AddFoodItemCard setActive={setActive} setIsUpdating={setIsUpdating} 
+               isUpdating={isUpdating} updatingFoodId={updatingFoodId} setUpdatingFoodId={setUpdatingFoodId}/> 
 
           ):
           (
@@ -33,7 +32,9 @@ function AddMenuItems() {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 m-4">
             {
               data?.foodMenu?.map((foodItem)=>(
-                <FoodItemCard key={foodItem._id} foodItem={foodItem}/>
+                <FoodItemCard key={foodItem._id} foodItem={foodItem} setIsUpdating={setIsUpdating}
+                setUpdatingFoodId={setUpdatingFoodId}
+                />
               ))
             }
           </div>

@@ -15,7 +15,7 @@ function App() {
   return (
     <QueryClientProvider  client={queryClient}>
 
-         <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
+         {/* <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'> */}
           <Toaster richColors position="top-center" />
 
            <RouterProvider router={Layout}/>
@@ -23,7 +23,7 @@ function App() {
                  <ReactQueryDevtools initialIsOpen={true} />
 
 
-       </ThemeProvider>
+       {/* </ThemeProvider> */}
 
     </QueryClientProvider>
    

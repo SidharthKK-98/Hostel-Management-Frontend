@@ -7,6 +7,9 @@ import Room from "./pages/Room";
 import AddMenuItems from "./pages/AddMenuItems";
 import DailyMenu from "./pages/DailyMenu";
 import Complaints from "./pages/Complaints";
+import UserDashBoardLayout from "./UserDashBoardLayout";
+import UserHome from "./pages/UserHome";
+import UserMenuSelect from "./pages/UserMenuSelect";
 
 
 export const Layout = createBrowserRouter([
@@ -45,6 +48,22 @@ export const Layout = createBrowserRouter([
                     path:"complaints",
                     element:<Complaints/>
                 }               
+            ]
+    },
+
+     {
+            path:"/user",
+            element:<UserDashBoardLayout/>,
+            children:[
+                {   
+                    index:true,
+                    element:<UserHome/>
+                },
+                {
+                    path:"selectDailyMenu",
+                    element:<UserMenuSelect/>
+                },
+                             
             ]
     }
 ])

@@ -1,54 +1,37 @@
-import { Button } from "@/components/ui/button"
-import { useLogout } from "@/hooks/authHooks/useLogout"
-import { House } from "lucide-react"
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
+import { Button } from "./ui/button"
+import { House } from "lucide-react"
+import { useLogout } from "@/hooks/authHooks/useLogout"
 
-type sideBarButton={
-    id:number,
+type userSideBarButton={
+     id:number,
     name:string,
     route:string
 }
 
+function UserSiderBar() {
 
-function SideBar() {
-
-    const [activeButton,setActiveButon] = useState(1)
+    const[activeButton,setActiveButon] = useState(1)
     const {mutate:Logout,isPending} = useLogout()
+    
 
-    const ButtonArray:sideBarButton[] = [
+    const ButtonArray:userSideBarButton[] = [
         {
             id:1,
-            name:"Rooms",
-            route:"/admin"
+            name:"User DashBoard",
+            route:"/user"
         },
-
         {
             id:2,
-            name:"Add Menu",
-            route:"/admin/addMenu"
-        },
-
-        
-        {
-            id:3,
-            name:"Daily Menu",
-            route:"/admin/add-Daily-Menu"
-        },
-
-        {
-            id:4,
-            name:"Complaints",
-            route:"/admin/complaints"
+            name:"Select Daily Menu",
+            route:"/user/selectDailyMenu"
         }
-
     ]
-
-    
 
   return (
     <div className="p-4 h-full  bg-gray-800 shadow-2xl z-10  ">
-        <h1 className="text-white font-semibold  my-4 flex gap-2 items-center"><House/> Hostel Admin</h1>
+            <h1 className="text-white font-semibold  my-4 flex gap-2 items-center"><House/> User</h1>
         {
             ButtonArray.map((item)=>(
                 <NavLink  key={item.id} to={item.route}>
@@ -60,7 +43,7 @@ function SideBar() {
             ))
         }
 
-        <Button variant={"link"} 
+         <Button variant={"link"} 
         onClick={()=>Logout()}
         disabled={isPending}
         className="text-white w-full mx-auto">Logout</Button>
@@ -69,4 +52,4 @@ function SideBar() {
   )
 }
 
-export default SideBar
+export default UserSiderBar

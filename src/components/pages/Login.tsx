@@ -15,6 +15,8 @@ import { useSignup } from "@/hooks/authHooks/useSignup"
 import { useState } from "react"
 import { AlertDemo } from "../Alert"
 import {type AlertType } from "@/Types/alertTypes"
+import { toast } from "sonner"
+import { useNavigate } from "react-router-dom"
 
 type AuthMode = "login" | "signup"
 
@@ -23,6 +25,7 @@ function Login() {
 
   const [mode,setMode] =useState<AuthMode>("login")
   const [alert,setAlert]=useState<AlertType>(null)
+  const navigate = useNavigate()
 
   const initialForm={
     
@@ -106,8 +109,15 @@ const clearData= ()=>{
                       type: "success",
                       message: data.message,
                     })
-              // alert(data.message)
-              console.log(data);
+              toast.success(data.message)
+              const role = data.user.role
+
+              if(role ==="admin"){
+                navigate("/admin")
+              }
+              else{
+                navigate("/user")
+              }
               clearData()
             
           }
@@ -131,8 +141,8 @@ const clearData= ()=>{
                 setAlert({
                     type: "success",
                     message: data.message,
-                  })            
-                console.log(data);
+                  }) 
+                navigate("/user")           
                 clearData()
             }
           }

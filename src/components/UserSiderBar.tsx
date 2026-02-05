@@ -26,6 +26,11 @@ function UserSiderBar() {
             id:2,
             name:"Select Daily Menu",
             route:"/user/selectDailyMenu"
+        },
+        {
+            id:3,
+            name:"Menu Overview",
+            route:"/user/menuOverview"
         }
     ]
 

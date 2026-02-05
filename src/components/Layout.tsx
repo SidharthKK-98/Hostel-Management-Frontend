@@ -10,6 +10,7 @@ import Complaints from "./pages/Complaints";
 import UserDashBoardLayout from "./UserDashBoardLayout";
 import UserHome from "./pages/UserHome";
 import UserMenuSelect from "./pages/UserMenuSelect";
+import MenuOverview from "./pages/MenuOverview";
 
 
 export const Layout = createBrowserRouter([
@@ -63,6 +64,10 @@ export const Layout = createBrowserRouter([
                     path:"selectDailyMenu",
                     element:<UserMenuSelect/>
                 },
+                {
+                    path:"menuOverview",
+                    element:<MenuOverview/>
+                }
                              
             ]
     }

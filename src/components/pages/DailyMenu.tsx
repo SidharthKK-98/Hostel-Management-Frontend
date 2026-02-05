@@ -8,13 +8,18 @@ import type { FoodItem } from "@/Types/MenuItemsTypes"
 import type { MealType, SelectedMenu } from "@/Types/dailyMenuTypes"
 import { useGetDailyMenu } from "@/hooks/DailyMenuItemsHooks/useGetDailyMenu"
 import DailyMenuCard from "../Cards/DailyMenuCard"
+import { useDailyMenuPortion } from "@/hooks/MenuSelectionHooks/useGetDailyMenuPortion"
+import ShowDailyMenuPortions from "../Cards/ShowDailyMenuPortions"
 
 
 function DailyMenu() {
 
 
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined)
+    const [portionDate, setPortionDate] = useState<Date | null>(null)
+
     const [isSelectFood,setIsSelectFood] = useState<boolean>(false)
+    const [isSelectPortion,setIsSelectPortion] = useState<boolean>(false)
     const [selectedMenu,setSelectedMenu] = useState<{morning:FoodItem[]
       noon:FoodItem[]
       night:FoodItem[]
@@ -22,8 +27,16 @@ function DailyMenu() {
 
     const {data:Items,isLoading} = useGetFoodItems()
     const {data:DailyMenu} = useGetDailyMenu()
+    const {data:DailyMenuPortion} = useDailyMenuPortion(portionDate)
 
-    console.log(DailyMenu?.data);
+    console.log(DailyMenuPortion);
+
+    const getTomorrow =()=>{
+      const today = new Date()
+      const tomorrow = new Date(today)
+      tomorrow.setDate(today.getDate()+1)
+      return tomorrow
+    }
     
    
 
@@ -60,6 +73,10 @@ function DailyMenu() {
 
     }
     
+    const handleDailyItems=()=>{
+         setPortionDate(getTomorrow())
+
+    }
 
   return (
     <div className='text-black m-4'>
@@ -69,6 +86,10 @@ function DailyMenu() {
 
         <Button onClick={()=>setIsSelectFood(prev=>!prev)}>
             Select Food Items
+        </Button>
+
+        <Button onClick={()=>{handleDailyItems;setIsSelectPortion(prev=>!prev)}}>
+          Get Daily Items
         </Button>
     </div>
      
@@ -123,6 +144,14 @@ function DailyMenu() {
               
           ))
         }
+     </div>
+
+     <div className="my-2">
+      {
+        isSelectPortion &&(
+       <ShowDailyMenuPortions DailyMenuPortion={DailyMenuPortion}/>
+        )
+      }
      </div>
 
      

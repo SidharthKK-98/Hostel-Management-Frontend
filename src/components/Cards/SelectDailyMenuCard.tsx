@@ -1,10 +1,18 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Minus, Utensils } from "lucide-react";
 import type {  DailyMenuCardProps } from "@/Types/dailyMenuTypes"
+import type { OrderSelection } from "@/Types/selectDailyMenuTypes";
+import { useState } from "react";
+import type { FoodItem } from "@/Types/MenuItemsTypes";
+import { useDailyMenuSelection } from "@/hooks/MenuSelectionHooks/useDailyMenuSelection";
 
 function SelectDailyMenuCard({menu}:DailyMenuCardProps) {
-    console.log(menu);
+
+    const [quantities,setQuantities] = useState<OrderSelection>({})
+    const {mutate:dailyMenuSelect} = useDailyMenuSelection()
+        console.log(menu,quantities);
+
 
     const today = new Date(menu.date)
          const day = String(today.getDate()).padStart(2, "0")
@@ -12,6 +20,37 @@ function SelectDailyMenuCard({menu}:DailyMenuCardProps) {
          const year = today.getFullYear()
 
         const Today = `${day}-${month}-${year}`
+
+    const handleUpdate =(id:string,portions:number)=>{
+        setQuantities(prev=>({
+            ...prev,
+            [id]:Math.max(0,(prev[id] || 0) + portions)
+        }))
+    }
+
+    const buildOrderPayload = ()=>{
+
+        const formatMeal = (items:FoodItem[])=>{
+            return items.filter(item=>(quantities[item._id]??0)>0)
+            .map(item =>({
+                foodId:item._id,
+                portion:quantities[item._id] ?? 0
+            }))
+        }
+
+        return{
+            date:menu.date,
+            morning:formatMeal(menu.morning),
+            noon: formatMeal(menu.noon),
+            night: formatMeal(menu.night)
+        }
+    }
+
+    const handleSubmitMenu=()=>{
+        const payload = buildOrderPayload()
+        dailyMenuSelect(payload)
+        
+    }
     
   return (
     <div className="h-80 w-fit shadow-2xl text-black overflow-scroll p-4">
@@ -49,20 +88,20 @@ function SelectDailyMenuCard({menu}:DailyMenuCardProps) {
                   variant="ghost" 
                   size="icon" 
                   className="h-8 w-8"
-                //   onClick={() => handleUpdate(menu._id, -1)}
+                  onClick={() => handleUpdate(item._id, -1)}
                 >
                   <Minus className="h-4 w-4" />
                 </Button>
                 
                 <span className="w-8 text-center font-bold">
-                  {/* {quantities[menu._id] || 0} */}1
+                  {quantities[item._id] || 0}
                 </span>
                 
                 <Button 
                   variant="ghost" 
                   size="icon" 
                   className="h-8 w-8"
-                //   onClick={() => handleUpdate(item.id, 1)}
+                  onClick={() => handleUpdate(item._id, 1)}
                 >
                   <Plus className="h-4 w-4" />
                 </Button>
@@ -105,20 +144,20 @@ function SelectDailyMenuCard({menu}:DailyMenuCardProps) {
                   variant="ghost" 
                   size="icon" 
                   className="h-8 w-8"
-                //   onClick={() => handleUpdate(menu._id, -1)}
+                  onClick={() => handleUpdate(item._id, -1)}
                 >
                   <Minus className="h-4 w-4" />
                 </Button>
                 
                 <span className="w-8 text-center font-bold">
-                  {/* {quantities[menu._id] || 0} */}1
+                  {quantities[item._id] || 0}
                 </span>
                 
                 <Button 
                   variant="ghost" 
                   size="icon" 
                   className="h-8 w-8"
-                //   onClick={() => handleUpdate(item.id, 1)}
+                  onClick={() => handleUpdate(item._id, 1)}
                 >
                   <Plus className="h-4 w-4" />
                 </Button>
@@ -161,20 +200,20 @@ function SelectDailyMenuCard({menu}:DailyMenuCardProps) {
                   variant="ghost" 
                   size="icon" 
                   className="h-8 w-8"
-                //   onClick={() => handleUpdate(menu._id, -1)}
+                  onClick={() => handleUpdate(item._id, -1)}
                 >
                   <Minus className="h-4 w-4" />
                 </Button>
                 
                 <span className="w-8 text-center font-bold">
-                  {/* {quantities[menu._id] || 0} */}1
+                  {quantities[item._id] || 0}
                 </span>
                 
                 <Button 
                   variant="ghost" 
                   size="icon" 
                   className="h-8 w-8"
-                //   onClick={() => handleUpdate(item.id, 1)}
+                  onClick={() => handleUpdate(item._id, 1)}
                 >
                   <Plus className="h-4 w-4" />
                 </Button>
@@ -185,6 +224,8 @@ function SelectDailyMenuCard({menu}:DailyMenuCardProps) {
         }
          
     </div>
+
+    <Button variant="outline" size="sm" className="m-2 w-full" onClick={handleSubmitMenu}>Submit</Button>
        
     </div>
   )

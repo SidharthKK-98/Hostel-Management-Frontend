@@ -62,7 +62,7 @@ function Room() {
 
 
   return (
-    <div className='p-4  '>
+    <div className='p-4 w-screen lg:w-full '>
 
         <div className="m-4">
             <HostelConfigCard/>
@@ -71,7 +71,7 @@ function Room() {
 
         <div>
             <h1 className="text-black text-2xl m-4 font-semibold">Rooms</h1>
-            <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-6 gap-2 ">
+            <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-2 ">
                 {
                     data?.rooms.map((room)=>{
                         const isVacant = room.occupants.length === 0
@@ -91,7 +91,7 @@ function Room() {
 
         {
             selectedRoom && (
-                <Card className="w-3/4  bg-white ">
+                <Card className="lg:w-3/4  bg-white ">
                     <CardHeader className="flex justify-between text-black items-center">
                             <CardTitle className="text-black">Details of Room : {selectedRoom?.roomNumber}</CardTitle>
                              <Button className="font-semibold " variant={"ghost"} onClick={()=>setSelectedRoomId(null)}><X/></Button> 

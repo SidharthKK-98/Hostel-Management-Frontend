@@ -1,3 +1,5 @@
+import type { Rooms } from "./hostelConfigTypes"
+
 export interface SignupPayload {
     firstName:string,
     lastName:string,
@@ -29,14 +31,54 @@ export interface User {
     isFeesPayed?:boolean,
     gender:"male" | "female" | "other",
     age?:number,
-    roomId?:string,
+    roomId?:string | Rooms,
     isRoomAllocated?:boolean,
     createdAt?:string,
     updatedAt?:string,
-    __v?:number
+    __v?:number,
+     viewProfile?: boolean
 
+}
+
+export interface Users {
+     _id:string,
+    firstName:string,
+    lastName:string,
+    emailId?:string,
+    role?: "user" | "admin",
+    photoUrl:string,
+    photoPublicId?:string,
+    isFeesPayed?:boolean,
+    gender:"male" | "female" | "other",
+    age?:number,
+    roomId?: Rooms,
+    isRoomAllocated?:boolean,
+    createdAt?:string,
+    updatedAt?:string,
+    __v?:number,
+     viewProfile?: boolean
 }
 
 export interface LogoutResponse {
     message:string
+}
+
+export interface GetProfileResponse {
+    message:string
+    data:User
+}
+
+export interface UpdateProfileParams {
+    firstName?:string
+    lastName?:string
+    userImg?:File | null
+}
+
+export interface UpdateProfileResponse {
+    message:string
+    data:User
+}
+
+export interface RoomCardProps {
+    viewProfile:User 
 }

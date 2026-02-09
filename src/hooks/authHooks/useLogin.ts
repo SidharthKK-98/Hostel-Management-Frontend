@@ -10,8 +10,9 @@ export const useLogin=()=>{
 
     return useMutation({
         mutationFn:loginAPI,
-        onSuccess:(data)=>{
-            queryClient.setQueryData(["authUser"],data.user)
+        onSuccess:()=>{
+            queryClient.invalidateQueries({ queryKey: ["authUser"] })
+
             navigate("/admin")
 
         },

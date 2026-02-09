@@ -11,6 +11,7 @@ import UserDashBoardLayout from "./UserDashBoardLayout";
 import UserHome from "./pages/UserHome";
 import UserMenuSelect from "./pages/UserMenuSelect";
 import MenuOverview from "./pages/MenuOverview";
+import UserComplaint from "./pages/UserComplaint";
 
 
 export const Layout = createBrowserRouter([
@@ -67,6 +68,10 @@ export const Layout = createBrowserRouter([
                 {
                     path:"menuOverview",
                     element:<MenuOverview/>
+                },
+                 {
+                    path:"complaint",
+                    element:<UserComplaint/>
                 }
                              
             ]

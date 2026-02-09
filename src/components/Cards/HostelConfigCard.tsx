@@ -40,24 +40,24 @@ function HostelConfigCard() {
 
   return (
     <div>
-        <div className="w-1/2 h-auto rounded p-6 shadow-2xl border border-blue-200">
-            <h1 className="text-black font-semibold">Configure Rooms(One-time)</h1>
-            <div className="m-2 grid grid-cols-3 ">
+        <div className="w-full lg:w-1/2 h-auto rounded p-6 shadow-2xl border border-blue-200">
+            <h1 className="text-black font-semibold mb-4">Configure Rooms(One-time)</h1>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 ">
 
                  <Input disabled={isAlreadyConfigured} type="number" placeholder="No.of Rooms" 
                  value={totalRooms}
                  onChange={(e)=>setTotalRoms(Number(e.target.value))}
-                 className="w-3/4 border-black p-2 lg:w-1/2 text-black " />
+                 className="w-full border-black p-2 lg:w-1/2 text-black " />
 
                  <Input disabled={isAlreadyConfigured} type="number" placeholder="Room Capacity"
                  value={roomCapacity}
                  onChange={(e)=>setRoomCapacity(Number(e.target.value))}
-                 className="w-3/4 border-black p-2 lg:w-1/2 text-black " />
+                 className="w-full border-black p-2 lg:w-1/2 text-black " />
 
                  <Button  
                  onClick={handleConfigure}
                  disabled={isAlreadyConfigured || isPending}
-                 className="text-black hover:text-gray-500 p-2  shadow-2xl w-3/4 lg:w-1/2 ">
+                 className="text-white hover:text-gray-500 p-2  shadow-2xl w-full lg:w-1/2 ">
                     {
                     isAlreadyConfigured?"configured"
                     :isPending?"Configuring..."
@@ -67,15 +67,15 @@ function HostelConfigCard() {
 
             </div>
 
-            <div className="flex justify-between gap-2 m-2 my-4">
+            <div className="lg:flex  justify-between gap-2 m-2 my-4">
                 <Input type="number" placeholder="No.of Rooms" 
                 value={rooms}
                 onChange={(e)=>setRooms(Number(e.target.value))}
-                className="w-1/4 border-black p-2 lg:w-1/2 text-black " />
+                className="w-full border-black p-2 lg:w-1/2 text-black my-2 " />
 
                 <Button 
                 onClick={handleAddRooms}
-                className="bg-green-300 w-3/4 lg:w-1/2 shadow-2xl">+ Add Room</Button>
+                className="bg-green-300 w-full lg:w-1/2 shadow-2xl">+ Add Room</Button>
 
             </div>
         </div>

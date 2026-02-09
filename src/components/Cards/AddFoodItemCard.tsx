@@ -65,7 +65,7 @@ const handleUpdate=(foodId:string)=>{
 
   return (
     <div>
-      <Card className="w-full max-w-[350px] shadow-2xl border-gray-100 rounded-[2rem]">
+      <Card className=" w-full max-w-[350px] shadow-2xl border-gray-100 rounded-[2rem]">
         <CardHeader className="space-y-1">
           <div className="flex justify-between">
            <div className="flex items-center gap-2 mb-2">

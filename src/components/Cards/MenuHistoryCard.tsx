@@ -36,7 +36,7 @@ function MenuHistoryCard({items}:MenuHistoryCardProps) {
         <div className="bg-gray-300 p-2 rounded shadow-2xl w-1/2">
             <h1 className="font-semibold">Morning</h1>
                 {
-            items.morning.map(menu=>(
+            items?.morning?.map(menu=>(
               <div key={menu._id} className="flex gap-4 m-2">
                 <div >
                     {menu.foodId.name} 
@@ -68,21 +68,21 @@ function MenuHistoryCard({items}:MenuHistoryCardProps) {
             <h1 className="font-semibold">Noon</h1>
 
             {
-            items.noon.map(menu=>(
+            items?.noon?.map(menu=>(
               <div key={menu._id} className="flex gap-4  m-2">
                 <div >
-                    {menu.foodId.name} 
+                    {menu?.foodId?.name} 
 
                 </div>
 
                 <div>
                     {
-                        menu.portion
+                        menu?.portion
                     }
                 </div>
 
                  <div >
-                   RS: {menu.foodId.price} 
+                   RS: {menu?.foodId?.price} 
 
                 </div>
                 
@@ -99,21 +99,21 @@ function MenuHistoryCard({items}:MenuHistoryCardProps) {
             <h1 className="font-semibold">Night</h1>
 
             {
-            items.night.map(menu=>(
+            items?.night?.map(menu=>(
               <div key={menu._id} className="flex gap-4  m-2">
                 <div >
-                    {menu.foodId.name} 
+                    {menu?.foodId?.name} 
 
                 </div>
 
                 <div>
                     {
-                        menu.portion
+                        menu?.portion
                     }
                 </div>
 
                  <div >
-                   RS: {menu.foodId.price} 
+                   RS: {menu?.foodId?.price} 
 
                 </div>
                 
@@ -129,7 +129,7 @@ function MenuHistoryCard({items}:MenuHistoryCardProps) {
         <div >
             <h1 className="font-semibold">Total Price :</h1>
         {
-            items.totalPrice
+            items?.totalPrice
         }
         </div>
 

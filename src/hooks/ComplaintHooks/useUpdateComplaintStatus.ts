@@ -1,20 +1,18 @@
-import { postComplaint } from "@/apis/ComplaintAPIs"
+import { updateUnresolvedComplaints } from "@/apis/ComplaintAPIs"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 
-export const usePostComplaint=()=>{
+export const useUpdateComplaintStatus=()=>{
+
     const qc = useQueryClient()
 
     return useMutation({
-        mutationFn:postComplaint,
+        mutationFn:updateUnresolvedComplaints,
         onSuccess:(response)=>{
             toast.success(response.message)
             qc.invalidateQueries({queryKey:["User-Complaint"]})
-        },
-        onError:(error)=>{
-            console.log(error.message,error.cause);
-            
+
         }
-        
     })
+
 }

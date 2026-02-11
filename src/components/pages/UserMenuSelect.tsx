@@ -4,7 +4,6 @@ import SelectDailyMenuCard from "../Cards/SelectDailyMenuCard";
 function UserMenuSelect() {
 
   const {data:dailyMenu} = useGetDailyMenu()
-  console.log(dailyMenu);
   const length = dailyMenu?.data?.length
   
   return (

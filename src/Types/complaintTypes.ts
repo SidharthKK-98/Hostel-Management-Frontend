@@ -3,7 +3,7 @@ export interface ComplaintPayload {
     subject:string 
 }
 
-export type ComplaintStatus = "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED"
+export type ComplaintStatus = "OPEN" | "IN_PROGRESS" | "RESOLVED" 
 
 export type ComplaintCategory =
   | "MAINTENANCE"
@@ -11,11 +11,16 @@ export type ComplaintCategory =
   | "ROOM"
   | "OTHER"
 
+export interface UpdatedBy {
+  _id:string
+  firstName:string
+}
+
 export interface ComplaintTimelineEntry {
   _id: string;
   status: ComplaintStatus;
   message: string;
-  updatedBy: string;      
+  updatedBy: UpdatedBy[];      
   updatedAt: string;   
 }
 
@@ -37,3 +42,34 @@ export interface PostComplaintResponse {
     data:Complaint
 
 }
+
+export interface RoomInfo {
+  _id: string;
+  roomNumber: number;
+}
+
+export interface ComplaintUser {
+  _id:string
+  firstName:string
+  lastName:string
+  emailId:string
+  roomId:RoomInfo
+}
+
+export interface GetComplaint {
+  _id: string;
+  createdBy: ComplaintUser;   
+  category: ComplaintCategory;
+  subject: string;
+  status: ComplaintStatus;
+  timeline: ComplaintTimelineEntry[];
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+export interface GetComplaintsResponse {
+  message: string;
+  data: GetComplaint[];
+}
+

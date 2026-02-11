@@ -31,10 +31,10 @@ function Room() {
 
     if(isLoading) return <div>Loading...</div>
     if(isError) return <div>Error:{error.message}</div>
-    if(data){
-        console.log(data.rooms);
+    // if(data){
+    //     console.log(data.rooms);
         
-    }
+    // }
 
     const addUser =(roomId:string,userId:string)=>{
         if(!selectedRoom) return

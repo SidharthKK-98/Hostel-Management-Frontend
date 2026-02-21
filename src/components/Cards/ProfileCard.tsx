@@ -13,10 +13,11 @@ import type { User } from "@/Types/authTypes"
 interface ProfileCardProps {
   viewProfile: User | undefined
   setIsEdit:React.Dispatch<React.SetStateAction<boolean>>
+  fromAdmin:boolean
 }
 
 
-function ProfileCard({viewProfile,setIsEdit}:ProfileCardProps) {
+function ProfileCard({viewProfile,setIsEdit,fromAdmin}:ProfileCardProps) {
   const room = viewProfile?.roomId
   return (
     <div>
@@ -32,13 +33,18 @@ function ProfileCard({viewProfile,setIsEdit}:ProfileCardProps) {
         </CardAction>
         <CardTitle>{`${viewProfile?.firstName} ${viewProfile?.lastName}` }</CardTitle>
         <CardDescription>
-          <div>
+         {
+          !fromAdmin && (
+                <div>
             Room Number : {
                viewProfile?.isRoomAllocated && room && typeof room !== "string"
-    ? room.roomNumber
-    : "Not Allocated"
+                ? room.roomNumber
+                : "Not Allocated"
             }
           </div>
+          )
+         }
+          
         </CardDescription>
       </CardHeader>
       <CardFooter>

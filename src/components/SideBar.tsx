@@ -18,26 +18,37 @@ function SideBar() {
 
     const ButtonArray:sideBarButton[] = [
         {
-            id:1,
-            name:"Rooms",
+             id:1,
+            name:"Home",
             route:"/admin"
+        },
+        {
+            id:2,
+            name:"Users",
+            route:"/admin/users"
         },
 
         {
-            id:2,
+            id:3,
+            name:"Rooms",
+            route:"/admin/room"
+        },
+
+        {
+            id:4,
             name:"Add Menu",
             route:"/admin/addMenu"
         },
 
         
         {
-            id:3,
+            id:5,
             name:"Daily Menu",
             route:"/admin/add-Daily-Menu"
         },
 
         {
-            id:4,
+            id:6,
             name:"Complaints",
             route:"/admin/complaints"
         }

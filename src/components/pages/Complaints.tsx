@@ -9,7 +9,7 @@ function Complaints() {
   
   return (
     <div className='text-black p-4'>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {
               UnresolvedComplaints?.data.map((complaint)=>(
                 <ShowComplaint key={complaint._id} complaint={complaint}/>

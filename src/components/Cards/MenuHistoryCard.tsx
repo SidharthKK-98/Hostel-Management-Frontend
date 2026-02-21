@@ -137,9 +137,7 @@ function MenuHistoryCard({items}:MenuHistoryCardProps) {
       <CardFooter >
 
        
-        <Button variant="outline" size="sm" className="w-full">
-          Action
-        </Button>
+        
       </CardFooter>
     </Card>
 

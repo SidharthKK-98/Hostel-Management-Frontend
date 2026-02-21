@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query"
 
 export const useHostelConfig=()=>{
     return useQuery<HostelConfig,Error>({
-        queryKey:["hostelConfig"],
+        queryKey:["hostelConfig","rooms"],
         queryFn:async()=>{
             const response = await getTotalRooms()
             return response.config

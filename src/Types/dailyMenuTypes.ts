@@ -64,3 +64,17 @@ export interface DailyMenu  {
 export interface DailyMenuCardProps  {
   menu: GetDailyMenuResponse
 }
+
+export interface DailyTotalFoodSelection {
+  id:string
+  totalPortion:number
+  foodId:string
+  name:string
+  price:number
+}
+
+export interface SelectedFoodResponse {
+  message:string
+  data:DailyTotalFoodSelection[]
+}
+

@@ -24,10 +24,12 @@ function Room() {
     const{mutate:removeUserFromRoom,isLoading:isRemovingUser,isError:removeUserError} = useDeleteUserFromRoom()
     const{mutate:removeRooms} = useRemoveRooms()
 
+    console.log("useHostelConfig response:", data)
+
     const[selectedRoomId,setSelectedRoomId]=useState<string | null>(null)
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-    const selectedRoom = data?.rooms.find(room => room._id === selectedRoomId)
+    const selectedRoom = data?.rooms?.find(room => room._id === selectedRoomId)
 
     if(isLoading) return <div>Loading...</div>
     if(isError) return <div>Error:{error.message}</div>
@@ -72,10 +74,14 @@ function Room() {
         <div>
             <h1 className="text-black text-2xl m-4 font-semibold">Rooms</h1>
             <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-2 ">
+                
+                
                 {
-                    data?.rooms.map((room)=>{
-                        const isVacant = room.occupants.length === 0
-                        const statusColor = isVacant ? "bg-gray-300 hover:bg-gray-300" : room.occupants[0]?.gender === "male" ? "bg-blue-500 text-white hover:bg-blue-500" : "bg-pink-500 text-white hover-bg-pink-500" 
+                    
+                    data?.rooms?.map((room)=>{
+                        const occupants = room.occupants ?? []
+                        const isVacant = occupants.length === 0
+                        const statusColor = isVacant ? "bg-gray-300 hover:bg-gray-300" : room.occupants[0]?.gender === "male" ? "bg-blue-500 text-white hover:bg-blue-500" : "bg-pink-500 text-white hover:bg-pink-500" 
                         return(
                             <Button key={room._id} className={`${statusColor} hover:opacity-80 p-8 shadow-md lg:w-30`} onClick={()=>{setSelectedRoomId(room._id) ;setIsAddModalOpen(false)}}>
                                 {room.roomNumber}

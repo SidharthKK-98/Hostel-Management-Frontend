@@ -1,5 +1,6 @@
 import { type FoodSelectionResponse, type DailyMenuSelectPayload, type GetTotalPricePayload, type GetTotalPriceResponse,type DailyMenuDataResponse } from "@/Types/selectDailyMenuTypes"
 import commonAPI from "./commonAPI"
+import type { SelectedFoodResponse } from "@/Types/dailyMenuTypes"
 
 export const postSelectedDailyMenu=(payload:DailyMenuSelectPayload)=>{
     return commonAPI<FoodSelectionResponse>("POST",`foodSelction/selctFood`,payload)
@@ -15,5 +16,5 @@ export const getTotalPrice=(payload:GetTotalPricePayload)=>{
 
 export const getDailyPortion=(date:Date)=>{
     const formatted = date.toISOString().split("T")[0]
-    return commonAPI<DailyMenuDataResponse>("GET",`foodSelction/getByDate?date=${formatted}`)
+    return commonAPI<SelectedFoodResponse>("GET",`foodSelction/getByDate?date=${formatted}`)
 }

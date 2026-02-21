@@ -2,9 +2,10 @@
 
 //login API
 
-import { type LoginResponse, type LoginPayload, type SignupPayload,type LogoutResponse, type User, type UpdateProfileParams, type UpdateProfileResponse, type GetProfileResponse } from "@/Types/authTypes";
+import { type LoginResponse, type LoginPayload, type SignupPayload,type LogoutResponse, type UpdateProfileParams, type UpdateProfileResponse, type GetProfileResponse,type GetUsersResponse } from "@/Types/authTypes";
 import commonAPI from "./commonAPI";
 import { type RoomUnassignedUsers } from "@/Types/hostelConfigTypes";
+import {type GetTotalPriceResponse } from "@/Types/selectDailyMenuTypes";
 
 export const signupAPI = (payload:SignupPayload)=>{
     return commonAPI<LoginResponse>("POST","/signup",payload)
@@ -45,4 +46,12 @@ export const updateProfile=(payload:UpdateProfileParams)=>{
     }
 
     return commonAPI<UpdateProfileResponse>("PATCH","profile/edit",formData)
+}
+
+export const getAllUsers =()=>{
+    return commonAPI<GetUsersResponse>("GET","profile/getAllUsers")
+}
+
+export const getMonthlyAmount=(payload:string)=>{
+    return commonAPI<GetTotalPriceResponse>("GET",`foodSelction/getAmount/${payload}`)
 }

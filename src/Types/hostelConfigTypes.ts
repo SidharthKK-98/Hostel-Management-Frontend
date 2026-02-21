@@ -83,3 +83,12 @@ export interface addRoomsResponse {
 export interface addRoomsParams {
     numberOfRooms:number
 }
+
+export interface GetSummaryResponse {
+    _id:null
+    totalRooms:number
+    totalOccupants:number
+    emptyRooms:number
+    partiallyOccupiedRooms:number
+    fullRooms:number
+}

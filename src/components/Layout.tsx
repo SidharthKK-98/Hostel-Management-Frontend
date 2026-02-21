@@ -12,6 +12,8 @@ import UserHome from "./pages/UserHome";
 import UserMenuSelect from "./pages/UserMenuSelect";
 import MenuOverview from "./pages/MenuOverview";
 import UserComplaint from "./pages/UserComplaint";
+import AdminHome from "./pages/AdminHome";
+import ShowUsers from "./pages/ShowUsers";
 
 
 export const Layout = createBrowserRouter([
@@ -34,9 +36,17 @@ export const Layout = createBrowserRouter([
             path:"/admin",
             element:<AdminDashBoardLayout/>,
             children:[
-                {   
+                {
                     index:true,
+                    element:<AdminHome/>
+                },
+                {   
+                    path:"Room",
                     element:<Room/>
+                },
+                {
+                    path:"users",
+                    element:<ShowUsers/>
                 },
                 {
                     path:"addMenu",

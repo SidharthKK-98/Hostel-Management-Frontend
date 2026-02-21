@@ -1,6 +1,7 @@
 import  {type AddTotalRoomsParams,type RemoveUsersParams, type AddGuestSuccessResponse, 
     type AddUsersParams, type HostelConfigResponse, type RemoveGuestResponse,type AddTotalRoomResponse,
-    type addRoomsResponse, type addRoomsParams,type RemoveRoomResponse } from "@/Types/hostelConfigTypes"
+    type addRoomsResponse, type addRoomsParams,type RemoveRoomResponse, 
+   type GetSummaryResponse} from "@/Types/hostelConfigTypes"
 import commonAPI from "./commonAPI"
 
 
@@ -26,4 +27,8 @@ export const addUsers=({roomId,userId}:AddUsersParams)=>{
 
 export const removeUser=({roomId,userId}:RemoveUsersParams)=>{
     return commonAPI<RemoveGuestResponse>("DELETE",`room/removeGuest/${roomId}/${userId}`)
+}
+
+export const getRoomSummary = ()=>{
+    return commonAPI<GetSummaryResponse>("GET","/room/summary")
 }

@@ -1,5 +1,6 @@
 import { removeUser } from "@/apis/hostelConfigAPI"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { toast } from "sonner"
 
 
 export const useDeleteUserFromRoom=()=>{
@@ -8,7 +9,9 @@ export const useDeleteUserFromRoom=()=>{
 
     return useMutation({
         mutationFn:removeUser,
-        onSuccess:()=>{
+        onSuccess:(response)=>{
+
+            toast.error(response.message)
 
               queryClient.invalidateQueries({
                 queryKey:["RoomUnassignedUsers"]
@@ -16,6 +19,11 @@ export const useDeleteUserFromRoom=()=>{
 
             queryClient.invalidateQueries({
                 queryKey:["hostelConfig"]
+            })
+
+            
+            queryClient.invalidateQueries({
+                queryKey:["user"]
             })
 
         }

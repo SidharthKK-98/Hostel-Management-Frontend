@@ -33,7 +33,7 @@ function AdminDashBoardLayout () {
             <SideBar/>
         </div>
 
-        <div className='col-span-9  bg-white '>
+        <div className='col-span-9  bg-white w-screen lg:w-full'>
             <Outlet/>
         </div>
     </div>

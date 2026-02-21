@@ -82,3 +82,30 @@ export interface UpdateProfileResponse {
 export interface RoomCardProps {
     viewProfile:User 
 }
+
+export interface RoomId {
+    _id:string
+    roomNumber:number
+}
+
+export interface GetUsers {
+
+    _id:string
+    firstName:string
+    lastName:string
+    emailId:string
+    photoUrl:string
+    isFeesPayed:boolean
+    gender:string
+    age:number
+    roomId:RoomId | null
+    isRoomAllocated:boolean
+
+
+}
+
+export interface GetUsersResponse {
+    message:string
+    data:GetUsers[]
+}
+

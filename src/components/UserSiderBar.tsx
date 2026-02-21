@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
 import { Button } from "./ui/button"
-import { House } from "lucide-react"
 import { useLogout } from "@/hooks/authHooks/useLogout"
 import { useGetProfile } from "@/hooks/ProfileHooks/useGetProfile"
 
@@ -18,7 +17,6 @@ function UserSiderBar() {
 
     const {data:viewProfile} =useGetProfile()
     
-    console.log(viewProfile);
     
     const ButtonArray:userSideBarButton[] = [
         {

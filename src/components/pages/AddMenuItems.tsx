@@ -12,8 +12,8 @@ function AddMenuItems() {
   const [updatingFoodId,setUpdatingFoodId] = useState<string | null>(null)
   
   return (
-    <div className='text-black  h-full p-2  w-full sm:px-4 lg:px-6'>
-      <div >
+    <div className='text-black  h-full p-2  w-full  sm:px-4 lg:px-6 '>
+      <div className="">
         {
           active || isUpdating ?(
                <AddFoodItemCard setActive={setActive} setIsUpdating={setIsUpdating} 
@@ -21,7 +21,7 @@ function AddMenuItems() {
 
           ):
           (
-            <Button onClick={()=>setActive(true)}>Add Food Item</Button>
+            <Button  onClick={()=>setActive(true)}>Add Food Item</Button>
 
           )
         }
@@ -30,7 +30,7 @@ function AddMenuItems() {
         {
           isLoading ? <h1>Loading...</h1>
           :
-          <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+          <div className="grid grid-cols-2 gap-4 lg:grid-cols-5 w-full p-4">
             {
               data?.foodMenu?.map((foodItem)=>(
                 <FoodItemCard key={foodItem._id} foodItem={foodItem} setIsUpdating={setIsUpdating}

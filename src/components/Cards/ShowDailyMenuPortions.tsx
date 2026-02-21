@@ -6,12 +6,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import type { DailyMenuCardProps } from "@/Types/dailyMenuTypes";
+import type { SelectedFoodResponse } from "@/Types/dailyMenuTypes";
 // import type { DailyMenuDataResponse } from "@/Types/selectDailyMenuTypes"
 
 
 
-function ShowDailyMenuPortions({DailyMenuPortion}:DailyMenuCardProps) {
+function ShowDailyMenuPortions({DailyMenuPortion}:SelectedFoodResponse) {
     console.log(DailyMenuPortion?.data);
 
    

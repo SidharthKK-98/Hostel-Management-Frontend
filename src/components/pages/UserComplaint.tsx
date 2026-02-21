@@ -15,7 +15,7 @@ function UserComplaint() {
             <PostComplaintCard/>
         </div>
         <h1 className="text-center font-semibold my-2">Complaint History</h1>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="lg:grid grid-cols-3 gap-4">
           {
             complaintHistory?.data?.map((complaint)=>(
               <ShowComplaint key={complaint._id} complaint={complaint} fromUser={fromUser}/>

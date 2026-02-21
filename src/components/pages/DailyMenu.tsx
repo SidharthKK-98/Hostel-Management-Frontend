@@ -88,7 +88,7 @@ function DailyMenu() {
             Select Food Items
         </Button>
 
-        <Button onClick={()=>{handleDailyItems;setIsSelectPortion(prev=>!prev)}}>
+        <Button onClick={()=>{handleDailyItems();setIsSelectPortion(prev=>!prev)}}>
           Get Daily Items
         </Button>
     </div>
@@ -136,7 +136,7 @@ function DailyMenu() {
 
      </div>
 
-     <div className="flex gap-4 overflow-scroll">
+     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {
           DailyMenu?.data?.map((menu)=>(
            

@@ -27,7 +27,7 @@ function AdminHome() {
     <div className="p-4">
         <h1 className="text-center font-semibold text-2xl p-2"> Profile</h1>
 
-        <div className="grid gap-4 md:grid-cols-4">
+        <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
                 <StatCard title="Total Rooms" value={RoomSummary?.totalRooms} sub={` Occupied Rooms : ${occupiedRoom} / vaccant : ${RoomSummary?.emptyRooms} Rooms`} />
                 <StatCard title="Residents" value={RoomSummary?.totalOccupants} sub="Active Users" />
                 <StatCard title="Complaints " value={complaint?.data?.length} sub="Pending" />
@@ -45,6 +45,10 @@ function AdminHome() {
                   <EditProfileCard setIsEdit={setIsEdit}/>
                 )
               }
+            </div>
+
+            <div>
+              <h1 className="font-semibold text-xl">Quick Actions</h1>
             </div>
         </div>
 

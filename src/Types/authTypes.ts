@@ -19,6 +19,8 @@ export interface LoginResponse{
     user:User 
 }
 
+
+
 export interface User {
 
     _id:string,
@@ -31,7 +33,7 @@ export interface User {
     isFeesPayed?:boolean,
     gender:"male" | "female" | "other",
     age?:number,
-    roomId?:string | Rooms,
+    roomId?: Rooms | null,
     isRoomAllocated?:boolean,
     createdAt?:string,
     updatedAt?:string,
@@ -40,24 +42,7 @@ export interface User {
 
 }
 
-export interface Users {
-     _id:string,
-    firstName:string,
-    lastName:string,
-    emailId?:string,
-    role?: "user" | "admin",
-    photoUrl:string,
-    photoPublicId?:string,
-    isFeesPayed?:boolean,
-    gender:"male" | "female" | "other",
-    age?:number,
-    roomId?: Rooms,
-    isRoomAllocated?:boolean,
-    createdAt?:string,
-    updatedAt?:string,
-    __v?:number,
-     viewProfile?: boolean
-}
+
 
 export interface LogoutResponse {
     message:string

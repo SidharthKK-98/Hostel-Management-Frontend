@@ -113,10 +113,10 @@ const clearData= ()=>{
               const role = data.user.role
 
               if(role ==="admin"){
-                navigate("/admin")
+                navigate("/admin",{ replace: true })
               }
               else{
-                navigate("/user")
+                navigate("/user",{ replace: true })
               }
               clearData()
             
@@ -142,7 +142,7 @@ const clearData= ()=>{
                     type: "success",
                     message: data.message,
                   }) 
-                navigate("/user")           
+                navigate("/user",{ replace: true })           
                 clearData()
             }
           }

@@ -14,6 +14,7 @@ import MenuOverview from "./pages/MenuOverview";
 import UserComplaint from "./pages/UserComplaint";
 import AdminHome from "./pages/AdminHome";
 import ShowUsers from "./pages/ShowUsers";
+import ProtectedRoute from "./ProtectedRoute";
 
 
 export const Layout = createBrowserRouter([
@@ -33,6 +34,9 @@ export const Layout = createBrowserRouter([
     },
 
     {
+          element:<ProtectedRoute/>,
+          children:[
+            {
             path:"/admin",
             element:<AdminDashBoardLayout/>,
             children:[
@@ -61,9 +65,14 @@ export const Layout = createBrowserRouter([
                     element:<Complaints/>
                 }               
             ]
+            }
+          ]
     },
 
      {
+           element:<ProtectedRoute/>,
+           children:[
+            {
             path:"/user",
             element:<UserDashBoardLayout/>,
             children:[
@@ -85,5 +94,7 @@ export const Layout = createBrowserRouter([
                 }
                              
             ]
+            }
+           ]
     }
 ])

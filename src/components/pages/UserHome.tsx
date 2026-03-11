@@ -8,7 +8,10 @@ function UserHome() {
 
       const [isEdit,setIsEdit] = useState<boolean>(false)
 
-      const {data:viewProfile} =useGetProfile()
+      const {data:viewProfile,isLoading} =useGetProfile()
+      if (isLoading || !viewProfile) return <div>LOading....</div>
+      console.log(viewProfile);
+      
   
   return (
     <div className="w-full">

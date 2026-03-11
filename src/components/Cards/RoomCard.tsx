@@ -15,10 +15,7 @@ function RoomCard({viewProfile}:RoomCardProps) {
 
 const room = viewProfile?.roomId
 
-const Occupants =
-  room && typeof room !== "string"
-    ? room.occupants ?? []
-    : []    
+const Occupants =room?.occupants ?? []   
   return (
     <div>
         {

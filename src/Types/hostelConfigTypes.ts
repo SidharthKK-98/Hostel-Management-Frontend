@@ -16,12 +16,20 @@ export interface TotalRoomConfig {
   __v: number;
 }
 
+export interface RoomOccupant {
+
+    _id:string,
+    firstName:string,
+    photoUrl:string,
+    age:number
+
+}
 
 export interface Rooms {
     _id:string,
     roomNumber:number,
     capacity:number,
-    occupants:User[],
+    occupants:RoomOccupant[],
     status:string,
     createdAt:string,
     updatedAt:string,

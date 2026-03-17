@@ -51,6 +51,12 @@ function SideBar() {
             id:6,
             name:"Complaints",
             route:"/admin/complaints"
+        },
+        
+        {
+            id:7,
+            name:"Add Groceries",
+            route:"/admin/addGroceries"
         }
 
     ]

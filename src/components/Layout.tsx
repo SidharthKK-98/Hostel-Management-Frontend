@@ -15,6 +15,7 @@ import UserComplaint from "./pages/UserComplaint";
 import AdminHome from "./pages/AdminHome";
 import ShowUsers from "./pages/ShowUsers";
 import ProtectedRoute from "./ProtectedRoute";
+import AddGroceries from "./pages/AddGroceries";
 
 
 export const Layout = createBrowserRouter([
@@ -63,7 +64,11 @@ export const Layout = createBrowserRouter([
                 {
                     path:"complaints",
                     element:<Complaints/>
-                }               
+                },
+                {
+                    path:"addGroceries",
+                    element:<AddGroceries/>
+                }              
             ]
             }
           ]

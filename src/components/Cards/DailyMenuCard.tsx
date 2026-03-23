@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { useDeleteDailyMenu } from "@/hooks/DailyMenuItemsHooks/useDeleteDailyMenu";
+import { useGetProfile } from "@/hooks/ProfileHooks/useGetProfile";
 import type { DailyMenuCardProps } from "@/Types/dailyMenuTypes";
 
 
@@ -24,6 +25,8 @@ function DailyMenuCard({menu}:DailyMenuCardProps) {
         const Today = `${day}-${month}-${year}`
 
         const {mutate:deleteMenu} = useDeleteDailyMenu()
+        const {data:Profile} = useGetProfile()
+
 
     const handleRemove=(id:string)=>{
             deleteMenu(id)
@@ -116,9 +119,14 @@ function DailyMenuCard({menu}:DailyMenuCardProps) {
         </div>
       </CardContent>
       <CardFooter>
-        <Button variant="destructive" size="sm" className="w-full" onClick={()=>handleRemove(menu._id)}>
-          Remove
-        </Button>
+        {
+          Profile?.role==="admin"&&(
+              <Button variant="destructive" size="sm" className="w-full" onClick={()=>handleRemove(menu._id)}>
+                Remove
+              </Button>
+          )
+        }
+        
       </CardFooter>
     </Card>
     </div>

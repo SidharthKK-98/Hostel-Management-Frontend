@@ -16,6 +16,9 @@ import AdminHome from "./pages/AdminHome";
 import ShowUsers from "./pages/ShowUsers";
 import ProtectedRoute from "./ProtectedRoute";
 import AddGroceries from "./pages/AddGroceries";
+import CookDashboard from "./pages/CookDashboard";
+import CookDashboardLayout from "./CookDashboardLayout";
+import CookViewDailyMenu from "./pages/CookViewDailyMenu";
 
 
 export const Layout = createBrowserRouter([
@@ -101,5 +104,28 @@ export const Layout = createBrowserRouter([
             ]
             }
            ]
+    },
+
+    {
+        element:<ProtectedRoute/>,
+        children:[
+             {   
+                    path:"/cook",
+                    element:<CookDashboardLayout/>,
+                    children:[
+                        {
+                            index:true,
+                            element:<CookDashboard/>
+                        },
+                        {
+                            path:"viewDailyMenu",
+                            element:<CookViewDailyMenu/>
+                        }
+                    ]
+                }
+        ]
+
     }
+
+
 ])

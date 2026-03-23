@@ -115,8 +115,12 @@ const clearData= ()=>{
               if(role ==="admin"){
                 navigate("/admin",{ replace: true })
               }
-              else{
+              else if(role ==="user"){
                 navigate("/user",{ replace: true })
+              }
+              else{
+                navigate("/cook",{ replace: true })
+
               }
               clearData()
             

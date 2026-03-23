@@ -13,7 +13,7 @@ import type { User } from "@/Types/authTypes"
 interface ProfileCardProps {
   viewProfile: User | undefined
   setIsEdit:React.Dispatch<React.SetStateAction<boolean>>
-  fromAdmin:boolean
+  fromAdmin?:boolean
 }
 
 

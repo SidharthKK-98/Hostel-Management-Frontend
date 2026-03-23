@@ -11,7 +11,7 @@ function SelectDailyMenuCard({menu}:DailyMenuCardProps) {
 
     const [quantities,setQuantities] = useState<OrderSelection>({})
     const {mutate:dailyMenuSelect} = useDailyMenuSelection()
-        console.log(menu,quantities);
+        // console.log(menu,quantities);
 
 
     const today = new Date(menu.date)

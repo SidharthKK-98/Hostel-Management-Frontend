@@ -3,6 +3,8 @@ import ProfileCard from "../Cards/ProfileCard"
 import { useState } from "react"
 import EditProfileCard from "../Cards/EditProfileCard"
 import RoomCard from "../Cards/RoomCard"
+import PaymentCard from "../Cards/PaymentCard"
+import { Button } from "../ui/button"
 
 function UserHome() {
 
@@ -31,7 +33,8 @@ function UserHome() {
             </div>
         </div>
 
-        <div className="m-4">
+        <div className="m-4 lg:flex gap-4">
+                <PaymentCard/>
                 <RoomCard viewProfile={viewProfile}/>
         </div>
 

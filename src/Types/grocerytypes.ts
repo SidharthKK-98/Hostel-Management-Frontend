@@ -11,6 +11,25 @@ export interface RestoreGroceryParam {
     restoringAmount:number
 }
 
+export interface TakeGroceryParam {
+    groceryId:string
+    qty:number
+    unit:string
+
+}
+
+export interface UpdateGroceryParam {
+    _id:string
+    name?:string
+    unit?:string
+    minStock?:number
+
+}
+
+export interface RemoveGreceryParam {
+    _id:string
+}
+
 export interface Grocery {
   _id: string
   name: string

@@ -89,6 +89,8 @@ function AddGroceryCard() {
                                             <SelectItem value="liter">liter</SelectItem>
                                             <SelectItem value="ml">ml</SelectItem>
                                             <SelectItem value="packet">Packet</SelectItem>
+                                            <SelectItem value="pcs">pcs</SelectItem>
+
                                         </SelectContent>
                                     </Select>
                                 </div>

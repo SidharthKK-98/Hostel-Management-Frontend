@@ -7,18 +7,19 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import type { SelectedFoodResponse } from "@/Types/dailyMenuTypes";
-// import type { DailyMenuDataResponse } from "@/Types/selectDailyMenuTypes"
+interface Props {
+  DailyMenuPortion: SelectedFoodResponse
+}
 
 
-
-function ShowDailyMenuPortions({DailyMenuPortion}:SelectedFoodResponse) {
+function ShowDailyMenuPortions({DailyMenuPortion}:Props) {
     console.log(DailyMenuPortion?.data);
 
    
     
   return (
     <div>
-    <Card size="sm" className="mx-auto w-full max-w-sm">
+    <Card  className="mx-auto w-full max-w-sm">
       <CardHeader>
         <CardTitle>Tomorrow's Menu Selcted</CardTitle>
        
@@ -34,7 +35,7 @@ function ShowDailyMenuPortions({DailyMenuPortion}:SelectedFoodResponse) {
 
             :(
                      DailyMenuPortion?.data?.map((item)=>(
-                <div key={item._id}>
+                <div key={item.id}>
                     {item.name} - {item.totalPortion}
                 </div>
             ))

@@ -36,7 +36,7 @@ function DailyMenuCard({menu}:DailyMenuCardProps) {
   return (
     <div>
 
-            <Card size="sm" className="w-full max-w-2xl bg-orange-50/30 border-orange-100 shadow-sm">
+            <Card  className="w-full max-w-2xl bg-orange-50/30 border-orange-100 shadow-sm">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
         <CardTitle>{Today}</CardTitle>
         <CardDescription>
@@ -54,7 +54,7 @@ function DailyMenuCard({menu}:DailyMenuCardProps) {
               <div className="relative group">
                 <img 
                   src={meal.image} 
-                  alt={meal.title}
+                  alt={meal.name}
                   className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md transition-transform group-hover:scale-105"
                 />
                  <div className="absolute top-3 right-3 rounded-full bg-white/90 px-3 py-1 text-sm font-bold text-orange-700 shadow-sm">
@@ -78,7 +78,7 @@ function DailyMenuCard({menu}:DailyMenuCardProps) {
               <div className="relative group">
                 <img 
                   src={meal.image} 
-                  alt={meal.title}
+                  alt={meal.name}
                   className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md transition-transform group-hover:scale-105"
                 />
                 <div className="absolute top-3 right-3 rounded-full bg-white/90 px-3 py-1 text-sm font-bold text-orange-700 shadow-sm">
@@ -103,7 +103,7 @@ function DailyMenuCard({menu}:DailyMenuCardProps) {
               <div className="relative group">
                 <img 
                   src={meal.image} 
-                  alt={meal.title}
+                  alt={meal.name}
                   className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md transition-transform group-hover:scale-105"
                 />
                 <div className="absolute top-3 right-3 rounded-full bg-white/90 px-3 py-1 text-sm font-bold text-orange-700 shadow-sm">

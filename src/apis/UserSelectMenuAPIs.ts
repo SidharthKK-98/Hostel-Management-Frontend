@@ -1,4 +1,4 @@
-import { type FoodSelectionResponse, type DailyMenuSelectPayload, type GetTotalPricePayload, type GetTotalPriceResponse,type DailyMenuDataResponse } from "@/Types/selectDailyMenuTypes"
+import { type FoodSelectionResponse, type DailyMenuSelectPayload, type GetTotalPricePayload, type GetTotalPriceResponse } from "@/Types/selectDailyMenuTypes"
 import commonAPI from "./commonAPI"
 import type { SelectedFoodResponse } from "@/Types/dailyMenuTypes"
 

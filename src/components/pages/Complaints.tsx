@@ -4,7 +4,7 @@ import ShowComplaint from "../Cards/ShowComplaint";
 
 
 function Complaints() {
-  const {data:UnresolvedComplaints,isLoading} = useGetAllUnresolvedComplaints()
+  const {data:UnresolvedComplaints} = useGetAllUnresolvedComplaints()
   console.log("data",UnresolvedComplaints);
   
   return (
@@ -12,7 +12,7 @@ function Complaints() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {
               UnresolvedComplaints?.data.map((complaint)=>(
-                <ShowComplaint key={complaint._id} complaint={complaint}/>
+                <ShowComplaint key={complaint._id} complaint={complaint} fromUser={false}/>
               ))
             }
         </div>

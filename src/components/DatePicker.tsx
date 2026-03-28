@@ -43,6 +43,7 @@ function DatePicker({selectedDate,setSelectedDate}:DatePickerProps) {
             selected={selectedDate}
             captionLayout="dropdown"
             onSelect={(date) => {
+                if (!date) return 
 
               const picked = new Date(date)
               picked.setHours(0,0,0,0)

@@ -49,3 +49,27 @@ export interface RazorpayOptions {
   };
   handler: (response: RazorpayPaymentResponse) => void;
 }
+
+export interface Payment  {
+  _id: string;
+  userId: string;
+  amount: number;
+  currency: string;
+  status: string;
+  orderId: string;
+  receipt: string;
+  month: number;
+  year: number;
+  notes: {
+    firstName: string;
+    lastName: string;
+  };
+  createdAt: string; 
+  updatedAt: string;
+  __v: number;
+}
+
+export interface PaymentResponse  {
+  success: boolean;
+  payment: Payment[];
+}

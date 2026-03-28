@@ -48,7 +48,7 @@ function AddDailyMenuTempCard({selectedDate,selectedMenu,onSuccessAdd}:AddDailyM
   return (
     <div>
 
-    <Card size="sm" className="mx-auto w-full max-w-sm">
+    <Card className="mx-auto w-full max-w-sm">
       <CardHeader>
         <CardTitle> {
             Today

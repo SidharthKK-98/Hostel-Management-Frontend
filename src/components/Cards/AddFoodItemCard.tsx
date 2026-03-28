@@ -13,13 +13,19 @@ import { Label } from "@/components/ui/label";
 import { useAddFoodItems } from "@/hooks/MenuItemsHooks/useAddFoodItems";
 import { useState } from "react";
 import { toast } from "sonner";
-import type { AddFoodItemCardProps } from "@/Types/MenuItemsTypes";
 import { useUpdateFoodItems } from "@/hooks/MenuItemsHooks/useUpdateFoodItems";
 
+type AddFoodItemCardProps = {
+  setActive: React.Dispatch<React.SetStateAction<boolean>>
+  setIsUpdating: React.Dispatch<React.SetStateAction<boolean>>
+  isUpdating: boolean
+  updatingFoodId: string | null
+  setUpdatingFoodId: React.Dispatch<React.SetStateAction<string | null>>
+}
 
 function AddFoodItemCard({setActive,setIsUpdating,isUpdating,updatingFoodId,setUpdatingFoodId}:AddFoodItemCardProps) {
 
-  const {mutate:addMenu,isPending,isError}=useAddFoodItems()
+  const {mutate:addMenu}=useAddFoodItems()
   const{mutate:updateMenu} = useUpdateFoodItems()
 
 const [name, setName] = useState("")
@@ -171,7 +177,7 @@ const handleUpdate=(foodId:string)=>{
         <CardFooter>
           <Button
           onClick={()=>{
-            if(isUpdating){
+            if(isUpdating && updatingFoodId){
               handleUpdate(updatingFoodId)
             }
             else{

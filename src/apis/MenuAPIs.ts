@@ -27,7 +27,7 @@ export const updateFoodItem=(payload:UpdateFoodItemsParams)=>{
             }
 
             if (payload.price !== undefined) {
-                formData.append("price", payload.price.toString())
+                formData.append("price", (payload.price??0).toString())
             }
 
             if (payload.foodImg) {

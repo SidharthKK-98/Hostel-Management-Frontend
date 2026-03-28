@@ -4,7 +4,6 @@ import { useState } from "react"
 import EditProfileCard from "../Cards/EditProfileCard"
 import RoomCard from "../Cards/RoomCard"
 import PaymentCard from "../Cards/PaymentCard"
-import { Button } from "../ui/button"
 
 function UserHome() {
 

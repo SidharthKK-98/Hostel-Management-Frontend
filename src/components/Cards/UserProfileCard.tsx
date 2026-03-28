@@ -21,7 +21,7 @@ function UserProfileCard({user}:UserCardProps) {
   return (
     <div>
         
-    <Card size="sm" className="mx-auto w-full max-w-sm">
+    <Card  className="mx-auto w-full max-w-sm">
       <CardHeader className="flex items-center">
         <img src={user.photoUrl} alt="profile img" className="w-15 h-15 rounded-full" />
         <CardTitle>{user.firstName}  {user.lastName}</CardTitle>

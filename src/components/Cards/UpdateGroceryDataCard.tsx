@@ -29,6 +29,7 @@ function UpdateGroceryDataCard({selectedGrocery,onClose}:Props) {
       
 
       const updateItem=()=>{
+          if (!selectedGrocery) return
 
             const payload = { _id:selectedGrocery?._id,
                         name: name !== "" ? name : selectedGrocery?.name,

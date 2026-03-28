@@ -33,7 +33,7 @@ interface ShowComplaintProps {
 function ShowComplaint({complaint,fromUser}:ShowComplaintProps) {
     console.log(complaint);
     
-const {mutate:updateStatus,isPending} = useUpdateComplaintStatus()
+const {mutate:updateStatus} = useUpdateComplaintStatus()
 
 const complaintProgressMap: Record<ComplaintStatus, number> = {
   OPEN: 20,
@@ -70,7 +70,7 @@ const handleUpdateComplaint=(complaintId:string)=>{
 
   return (
     <div>
-        <Card size="sm" className="mx-auto w-full max-w-sm">
+        <Card  className="mx-auto w-full max-w-sm">
             <CardHeader>
                 <CardTitle>Complaint About {complaint.category}</CardTitle>
                 <CardDescription className="flex gap-4">

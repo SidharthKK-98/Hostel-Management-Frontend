@@ -18,8 +18,10 @@ export default function CookDashboard() {
             )
             setFilteredGroceries(filterItem || [])
             setSearch("")
-        }
-    
+            }
+            const handleUpdate = (grocery: Grocery) => {
+             console.log("Update grocery:", grocery)
+             }
   return (
     <div>
 
@@ -37,7 +39,8 @@ export default function CookDashboard() {
             {
              
                  (filteredGroceries.length > 0 ? filteredGroceries:groceryData)?.map((grocery)=>(
-                    <ShowGroceryCard  key={grocery._id} grocery={grocery}/>
+                    <ShowGroceryCard  key={grocery._id} grocery={grocery}   onUpdate={handleUpdate}
+/>
                 ))
             
             }

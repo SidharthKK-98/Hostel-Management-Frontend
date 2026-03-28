@@ -19,9 +19,9 @@ import { useRemoveRooms } from "@/hooks/HostelConfigureHooks/useRemoveRooms";
 function Room() {
 
     const {data, isLoading, isError, error}=useHostelConfig()
-    const {data:UnassignedUser,isError:isUnassignedError,error:unassignedError}=useUnassignedUsers()
-    const {mutate:addUserToRoom,isLoading:isAddingUser,isError:addUserError} = useAddUserToRoom()
-    const{mutate:removeUserFromRoom,isLoading:isRemovingUser,isError:removeUserError} = useDeleteUserFromRoom()
+    const {data:UnassignedUser}=useUnassignedUsers()
+    const {mutate:addUserToRoom} = useAddUserToRoom()
+    const{mutate:removeUserFromRoom} = useDeleteUserFromRoom()
     const{mutate:removeRooms} = useRemoveRooms()
 
     console.log("useHostelConfig response:", data)

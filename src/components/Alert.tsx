@@ -5,48 +5,21 @@ import {
 //   AlertDescription,
   AlertTitle,
 } from "@/components/ui/alert"
-import type { AlertType } from "@/Types/alertTypes"
+export type AlertType = {
+  typeOfAlert: "success" | "error";
+  alertMessage: string;
+};
 
 
-
-export function AlertDemo({typeOfAlert,AlertMessage}:AlertType) {
+export function AlertDemo({typeOfAlert,alertMessage}:AlertType) {
+    const isSuccess = typeOfAlert === "success";
 
   return (
-    <div className="grid w-full max-w-xl items-start gap-4">
-    {
-        (typeOfAlert === "success") ?( 
-      <Alert>
-        <CheckCircle2Icon />
-        <AlertTitle>{AlertMessage}</AlertTitle>
-        {/* <AlertDescription>
-          This is an alert with icon, title and description.
-        </AlertDescription> */}
+   <div className="grid w-full max-w-xl items-start gap-4">
+      <Alert variant={isSuccess ? "default" : "destructive"}>
+        {isSuccess ? <CheckCircle2Icon /> : <AlertCircleIcon />}
+        <AlertTitle>{alertMessage}</AlertTitle>
       </Alert>
-        )
-        :
-        (
-             <Alert variant="destructive">
-        <AlertCircleIcon />
-        <AlertTitle>{AlertMessage}</AlertTitle>
-        {/* <AlertDescription>
-          <p>Please verify your billing information and try again.</p>
-          <ul className="list-inside list-disc text-sm">
-            <li>Check your card details</li>
-            <li>Ensure sufficient funds</li>
-            <li>Verify billing address</li>
-          </ul>
-        </AlertDescription> */}
-      </Alert>
-        )
-    }
-      
-      {/* <Alert>
-        <PopcornIcon />
-        <AlertTitle>
-          This Alert has a title and an icon. No description.
-        </AlertTitle>
-      </Alert> */}
-     
     </div>
   )
 }

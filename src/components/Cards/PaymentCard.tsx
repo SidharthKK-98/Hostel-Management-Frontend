@@ -18,21 +18,34 @@ import {
 } from "@/components/ui/select"
 import { useGetTotalPrice } from "@/hooks/MenuSelectionHooks/useGetTotalPrice"
 import { useCreatePayment } from "@/hooks/PaymentHooks/useCreatePayment"
+import { useVerifyPayment } from "@/hooks/PaymentHooks/useVerifyPayment"
 import type { RazorpayPaymentResponse } from "@/Types/paymentTypes"
 import { useState } from "react"
 import { toast } from "sonner"
 
 
 function PaymentCard() {
- const [month, setMonth] = useState<string>("")
+  const [month, setMonth] = useState<string>("")
   const [year, setYear] = useState<string>("")
   const [showPay, setShowPay] = useState(false)
+  const [hasCheckedPayment, setHasCheckedPayment] = useState(false)
+  const [isPaying, setIsPaying] = useState(false);
 
     const {mutate:fetchPrice,data} = useGetTotalPrice()
     const {mutateAsync:payment} = useCreatePayment()
   
-  console.log(month,year);
+
+    const monthNum = month ? Number(month) : null
+    const yearNum = year ? Number(year) : null
+
+    const {data:existingPayment,  refetch: verifyPayment } = useVerifyPayment(yearNum,monthNum,{
+        enabled:false
+    })
   
+        const paymentCaptured =hasCheckedPayment&& existingPayment?.payment?.some(
+        (p) => p.status === "captured"
+        )
+
      const months = [
     { label: "January", value: "1" },
     { label: "February", value: "2" },
@@ -50,16 +63,44 @@ function PaymentCard() {
 
   const years = ["2024", "2025", "2026", "2027"]
 
+  const pollPaymentStatus = async () => {
+  let attempts = 0;
+
+  while (attempts < 6) {
+    const res = await verifyPayment();
+
+    const isCaptured = res?.data?.payment?.some(
+      (p) => p.status === "captured"
+    );
+
+    if (isCaptured) {
+      setHasCheckedPayment(true)
+      setIsPaying(false)
+      toast.success("Payment successful ")
+      return;
+    }
+
+    attempts++;
+    await new Promise((r) => setTimeout(r, 2000))
+  }
+
+  setIsPaying(false);
+  toast.error("Verification delayed. Please refresh.")
+}
+
   const getAmount=()=>{
 
     if(!month || !year){
         return toast.error("select required fields")
     }
+    setHasCheckedPayment(false)
 
     const payload={month:Number(month),year:Number(year)}
     fetchPrice(payload,{
-        onSuccess:()=>{
+        onSuccess:async()=>{
             setShowPay(true)
+            await verifyPayment()
+            setHasCheckedPayment(true)
         }
     })
   }
@@ -92,8 +133,18 @@ function PaymentCard() {
       },
       handler: async (response: RazorpayPaymentResponse) => {
         console.log("Payment success:", response)
+        toast.success("Payment processing...")
+        pollPaymentStatus()
+
+      },
+
+       modal: {
+        ondismiss: () => {
+          setIsPaying(false);
+        }
       }
-    };
+
+    }
 
     const rzp = new window.Razorpay(options);
     rzp.open();
@@ -158,13 +209,30 @@ function PaymentCard() {
                     )
                 }
                 {
-                        showPay&&(
-                             <Button variant="outline" size="sm" className="w-full"
-                                onClick={makePayment}
-                             >
-                                 Pay
-                            </Button>
-                        )
+                      showPay && !hasCheckedPayment && (
+    <p>Checking payment status...</p>
+  )
+}
+
+{
+                showPay && hasCheckedPayment && paymentCaptured && (
+                    <p className="text-green-600 font-medium">
+                    Payment already completed ✅
+                    </p>
+                )
+                }
+
+                {
+                showPay && hasCheckedPayment && !paymentCaptured && (
+                    <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full"
+                    onClick={makePayment}
+                    >
+                    {isPaying?"Processing":"Pay"}
+                    </Button>
+                )
                 }
                
             </CardFooter>

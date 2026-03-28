@@ -20,7 +20,7 @@ const Occupants =room?.occupants ?? []
     <div>
         {
             
-        <Card size="sm" className="mx-auto w-full max-w-sm">
+        <Card  className="mx-auto w-full max-w-sm">
                 <CardHeader>
                     <CardTitle>Room Mate</CardTitle>
                     <CardDescription>

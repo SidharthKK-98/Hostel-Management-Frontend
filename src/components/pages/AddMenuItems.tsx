@@ -6,7 +6,7 @@ import { useState } from "react";
 
 function AddMenuItems() {
 
-  const {data,isLoading,isError,error} = useGetFoodItems()
+  const {data,isLoading} = useGetFoodItems()
   const [active,setActive] = useState<boolean>(false)
   const [isUpdating,setIsUpdating] = useState<boolean>(false)
   const [updatingFoodId,setUpdatingFoodId] = useState<string | null>(null)

@@ -25,9 +25,9 @@ function DailyMenu() {
       night:FoodItem[]
     }>({morning:[],noon:[],night:[]})
 
-    const {data:Items,isLoading} = useGetFoodItems()
+    const {data:Items} = useGetFoodItems()
     const {data:DailyMenu} = useGetDailyMenu()
-    const {data:DailyMenuPortion} = useDailyMenuPortion(portionDate)
+    const {data:DailyMenuPortion} = useDailyMenuPortion(portionDate,{enabled: !!portionDate})
 
     console.log(DailyMenuPortion);
 

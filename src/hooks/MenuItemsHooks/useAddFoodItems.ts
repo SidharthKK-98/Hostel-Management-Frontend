@@ -1,5 +1,4 @@
 import { addMenu } from "@/apis/MenuAPIs"
-import type { FoodItem } from "@/Types/MenuItemsTypes"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 

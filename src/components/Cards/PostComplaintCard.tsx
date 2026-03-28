@@ -57,7 +57,7 @@ function PostComplaintCard() {
                 <CardContent >
 
                     <div>
-                        <RadioGroup defaultValue="FOOD" className="w-fit " value={category} onValueChange={setCategory}>
+                        <RadioGroup defaultValue="FOOD" className="w-fit " value={category} onValueChange={(value) => setCategory(value as ComplaintCategory)}>
 
                                <div className="flex gap-2">
                                      <div className="flex items-center gap-3">

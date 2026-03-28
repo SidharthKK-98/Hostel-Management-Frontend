@@ -7,7 +7,7 @@ import type { DailyMenuItemCardProps, MealType } from "@/Types/dailyMenuTypes";
 
 function DailyMenuItemCard({item,selectedMeals,onChange}:DailyMenuItemCardProps) {
 
-    const {_id,name,price,image} = item
+    const {name,price,image} = item
 
     const mealTimes:{ id: MealType; label: string }[] = [
     { id: "morning", label: "Morning" },

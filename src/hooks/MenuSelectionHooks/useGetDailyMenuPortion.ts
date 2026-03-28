@@ -1,12 +1,19 @@
 import { getDailyPortion } from "@/apis/UserSelectMenuAPIs"
 import { useQuery } from "@tanstack/react-query"
 
-export const useDailyMenuPortion = (date:Date)=>{
+type Options={
+    enabled?:boolean
+}
+
+export const useDailyMenuPortion = (date:Date | null,options?:Options)=>{
 
     return useQuery({
         queryKey:["daily-portion",date?.toDateString().split("T")[0]],
-        queryFn:()=>getDailyPortion(date),
-        enabled: !!date
+        queryFn:()=>{  
+            if (!date) throw new Error("Date is required")
+            getDailyPortion(date)
+        },
+        enabled: options?.enabled
     })
 
 }

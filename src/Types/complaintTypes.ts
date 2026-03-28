@@ -20,7 +20,7 @@ export interface ComplaintTimelineEntry {
   _id: string;
   status: ComplaintStatus;
   message: string;
-  updatedBy: UpdatedBy[];      
+  updatedBy: UpdatedBy;      
   updatedAt: string;   
 }
 

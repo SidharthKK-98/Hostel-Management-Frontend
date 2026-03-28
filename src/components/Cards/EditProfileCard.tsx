@@ -62,7 +62,7 @@ function EditProfileCard({setIsEdit}:EditProfileProps) {
         <div className="flex flex-col items-center justify-center space-y-4">
           <div className="relative group">
             <Avatar className="w-24 h-24 border-2 border-primary/10">
-              <AvatarImage src={imagePreview} alt="Profile" />
+              <AvatarImage src={imagePreview ?? undefined} alt="Profile" />
               <AvatarFallback> <Camera className="h-6 w-6" /></AvatarFallback>
             </Avatar>
             <label 

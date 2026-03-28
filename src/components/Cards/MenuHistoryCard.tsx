@@ -1,5 +1,4 @@
 
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -25,7 +24,7 @@ function MenuHistoryCard({items}:MenuHistoryCardProps) {
     <div>
 
 
-    <Card size="sm" className=" max-w-md mx-auto rounded-2xl shadow-md my-4">
+    <Card  className=" max-w-md mx-auto rounded-2xl shadow-md my-4">
       <CardHeader className="pb-2">
         <CardTitle className="text-xl font-bold">{Today}</CardTitle>
        

@@ -2,7 +2,7 @@
 
 //login API
 
-import { type LoginResponse, type LoginPayload, type SignupPayload,type LogoutResponse, type UpdateProfileParams, type UpdateProfileResponse, type GetProfileResponse,type GetUsersResponse, type Users } from "@/Types/authTypes";
+import { type LoginResponse, type LoginPayload, type SignupPayload,type LogoutResponse, type UpdateProfileParams, type UpdateProfileResponse, type GetProfileResponse,type GetUsersResponse, type User } from "@/Types/authTypes";
 import commonAPI from "./commonAPI";
 import { type RoomUnassignedUsers } from "@/Types/hostelConfigTypes";
 import {type GetTotalPriceResponse } from "@/Types/selectDailyMenuTypes";
@@ -22,7 +22,7 @@ export const logoutApI=()=>{
 }
 
 export const getAuthUser=()=>{
-    return commonAPI<Users>("GET","authenticated")
+    return commonAPI<User>("GET","authenticated")
 }
 
 export const getRoomUnassignedUsers =()=>{
